@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: aquamarine;
+}
+
+
+
+.main-container{
+    margin-top: 35vh;
+    display: flex;
+    justify-content: space-between;
+    /* border: 5px solid red; */
+}
+
+.container-hero{
+    position: relative;
+    width: 40vw;
+    height: 60vh;
+    border: 1px solid red;
+
+}
+
+.container-enemy{
+    position: relative;
+    width: 40vw;
+    height: 60vh;
+    /* border: 1px solid red; */
+}
+
+.arm{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    width: 45%;
+}
+
+.sensor-agent{  
+    border-bottom: 2px dashed red;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    height: 2px;
+    width: 57vw;
+}
+
+.sensor-hero{  
+    border-bottom: 2px dashed red;
+    position: absolute;
+    top: 20%;
+    right: 81%;
+    height: 2px;
+    width: 58vw;
+}
