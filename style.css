@@ -11,6 +11,7 @@ body{
 
 
 .main-container{
+    position: relative;
     margin-top: 35vh;
     display: flex;
     justify-content: space-between;
@@ -34,9 +35,15 @@ body{
 
 .arm{
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 35%;
     width: 45%;
+    transition: all 2s ease-in-out;
+    transform: rotate(45deg) translateY(30%);
+}
+
+.gun-pointed{
+    transform: rotate(0) translateY(0);
 }
 
 .sensor-agent{  
@@ -55,4 +62,13 @@ body{
     right: 81%;
     height: 2px;
     width: 58vw;
+}
+
+.bullet{
+    height: 10px;
+    width: 20px;
+    background-color: red;
+    position: absolute;
+    top: 26%;
+    left: 25%;
 }

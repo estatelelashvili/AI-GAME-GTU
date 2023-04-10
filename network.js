@@ -19,7 +19,7 @@ class Layer {
   }
 }
 
-class Network {
+export default class Network {
   constructor() {
     this.learningRate = 0.1;
     this.epochs = 10000;
@@ -115,26 +115,28 @@ class Network {
   predict(testData) {
     this.feedForward(testData[0], testData[1]);
     const result = this.outputLayer.nodes[0].output;
-    console.log(testData[0], testData[1], result);
+    // console.log('decimal values ', testData[0], testData[1], result);
+    return +result.toFixed(1) == true;
   }
 }
 
 // XOR DATA
 
-const dataSet = {
-  trainingData: [
-    [1, 1],
-    [1, 0],
-    [0, 0],
-    [0, 1],
-  ],
-  labels: [0, 1, 0, 1],
-};
+// const dataSet = {
+//   trainingData: [
+//     [1, 1],
+//     [1, 0],
+//     [0, 0],
+//     [0, 1],
+//   ],
+//   labels: [0, 1, 0, 1],
+// };
 
-const nn = new Network();
+// const nn = new Network();
 
-nn.train(dataSet);
+// nn.train(dataSet);
 
-for (let i = 0; i < dataSet.trainingData.length; i++) {
-  nn.predict(dataSet.trainingData[i]);
-}
+// for (let i = 0; i < dataSet.trainingData.length; i++) {
+//   const testResult = nn.predict(dataSet.trainingData[i]);
+//   console.log('boolean values ', testResult);
+// }

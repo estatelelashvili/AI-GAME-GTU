@@ -1,5 +1,7 @@
+import Network from "../../network";
+
 export default class Bot{
-    constructor(id, imgClass,enemyClass, sensorClass){
+    constructor(id, imgClass, enemyClass, sensorClass, dataSet){
 
         this.id = id;
         this.isAlive = true;
@@ -13,6 +15,8 @@ export default class Bot{
         this.imgRect = this.img.getBoundingRectangle();
         this.sensorRect = this.img.getBoundingRectangle();
 
+        this.nn = Network();
+        this.nn.train(dataSet);
 
     }
 
