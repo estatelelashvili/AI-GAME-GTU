@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main-container">
-        <div class="container-enemy">
-            <img id="enemy" src="images/armless-agent.png" alt="" >
-            <img class="arm gun-pointed" src="images/arm-gun-silver.png" alt="" srcset="">
-            <div class="sensor-agent"></div>
-        </div>
-        <div class="container-hero">
-            <img id="hero" src="images/neo-removebg-preview.png" alt="" >
-            <div class="sensor-hero"></div>
-        </div>
+      <div class="neo-container">
+        <img
+          class="neo-img"
+          id="system-enemy"
+          src="images/neo-removebg-preview.png"
+          alt=""
+        />
+      </div>
+      <div class="agent-container">
+        <img
+          class="agent-container-img"
+          id="system-agent"
+          src="images/armless-agent.png"
+          alt=""
+        />
         <div class="bullet"></div>
-        <script src="network.js"></script>
+
+        <img class="img-arm" src="images/arm-gun-silver.png" alt="" srcset="" />
+
+        <div class="agent-sensor"></div>
+        <div class="neo-sensor"></div>
+      </div>
+      <script src="network.js"></script>
     </div>
-</body>
+  </body>
 </html>

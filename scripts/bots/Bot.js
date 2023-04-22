@@ -1,28 +1,28 @@
-import Network from "../../network";
+import Network from '../../network';
 
-export default class Bot{
-    constructor(id, imgClass, enemyClass, sensorClass, dataSet){
+export default class Bot {
+  constructor(dataset, imgQuery, EnemyImgQuery, sensorQuery, id) {
+    this.isEnemyNearBy = false;
+    this.isEnemyAlive = false;
+    this.isAlive = true;
+    this.isObjectEnemy = false;
 
-        this.id = id;
-        this.isAlive = true;
-        this.isEnemyNear = false;
+    this.id = id;
 
-        this.mainContainer = document.querySelector('.main-container');
-        this.img = document.querySelector(imgClass);
-        this.enemy = document.querySelector(enemyClass);
-        this.sensor = document.querySelector(sensorClass);
+    this.sensor = document.querySelector(sensorQuery);
+    this.img = document.querySelector(imgQuery);
+    this.enemyImg = document.querySelector(EnemyImgQuery);
+    this.mainContainer = document.querySelector('.main-container');
+    this.bullet = document.querySelector('.bullet');
 
-        this.imgRect = this.img.getBoundingRectangle();
-        this.sensorRect = this.img.getBoundingRectangle();
+    this.nn = new Network();
+    this.nn.train(dataset);
+  }
 
-        this.nn = Network();
-        this.nn.train(dataSet);
-
+  detectEnemy(contactPoint1, contactPoint2) {
+    if (contactPoint1 > contactPoint2) {
+      return true;
     }
-
-    detect(contactPoint1, contactPoint2) {
-        if(contactPoint1 > contactPoint2){
-            this.isEnemyNear = true;
-        }
-    }
+    return false;
+  }
 }

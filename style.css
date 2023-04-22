@@ -11,64 +11,111 @@ body{
 
 
 .main-container{
-    position: relative;
-    margin-top: 35vh;
-    display: flex;
-    justify-content: space-between;
-    /* border: 5px solid red; */
+  overflow: hidden;
+  border: 5px solid black;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
+  flex-wrap: wrap; 
+  border-bottom:10px solid black ;
 }
 
-.container-hero{
-    position: relative;
-    width: 40vw;
-    height: 60vh;
-    border: 1px solid red;
-
+.neo-container{
+  order: 2;
+  position: relative;
+  overflow: hidden;
+  flex-basis: calc(50% - 25px); 
 }
 
-.container-enemy{
-    position: relative;
-    width: 40vw;
-    height: 60vh;
-    /* border: 1px solid red; */
+.neo-img {
+  margin: 50% 0 0 25%;
+  width: 35%;
+  height: 50%;
+  
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: perspective(500px) rotateY(0) rotateX(0);
+  transform-origin: 50% 50%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 1.3s ease-in-out;
 }
 
-.arm{
-    position: absolute;
-    top: 25%;
-    left: 35%;
-    width: 45%;
-    transition: all 2s ease-in-out;
-    transform: rotate(45deg) translateY(30%);
+.agent-container{
+  order: 1;
+  position: relative;
+  flex-basis: calc(50% - 25px); 
 }
 
-.gun-pointed{
-    transform: rotate(0) translateY(0);
+.agent-container-img{
+  margin: 50% 0 0 25%;
+  width: 35%;
+  height: 50%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: perspective(500px) rotateY(0) rotateX(0);
+  transform-origin: 50% 50%;
+  position: absolute;
+  transition: all 1s ease-in-out;
+  top: -10px;
+  left: -25%;
 }
 
-.sensor-agent{  
-    border-bottom: 2px dashed red;
-    position: absolute;
-    top: 10%;
-    left: 25%;
-    height: 2px;
-    width: 57vw;
-}
-
-.sensor-hero{  
-    border-bottom: 2px dashed red;
-    position: absolute;
-    top: 20%;
-    right: 81%;
-    height: 2px;
-    width: 58vw;
+.img-arm{
+  width: 25%;
+  height: 13%;
+  top: 59%;
+  left: 25%;
+  transform:  translateY(-30%);
+  transform: rotate(30deg);
+  transform-origin: left bottom;
+  transition: all 1s ease-in-out;
+  position: relative;
 }
 
 .bullet{
-    height: 10px;
-    width: 20px;
-    background-color: red;
     position: absolute;
-    top: 26%;
-    left: 25%;
+    top: 71%;
+    left: 44%;
+    height: 6px;
+    width: 10px;
+    background-color: red;
+    transform: rotate(30deg)  translateY(-30%);
 }
+
+.agent-sensor{  
+    position: absolute;
+    top: 56%;
+    left: 84%;
+    width: 755px;
+    height: 12px;
+    background-color: transparent;
+    border-top: 2px dashed white;
+    transform: translate(-50%, -50%) ;
+    transform-origin: left bottom;
+    transition: all 1s ease-in-out;
+    right: calc(25% + 1px); 
+}
+
+.aim{
+    transform: rotate(0deg) translateY(-30%);
+}
+
+.neo-sensor{  
+  position: absolute;
+  top: 64%;
+  left: 87%;
+  width: 730px;
+  height: 12px;
+  background-color: transparent;
+  border-top: 2px dashed chartreuse;
+  transform: translate(-50%, -50%) ;
+  transform-origin: left bottom;
+  transition: all 1s ease-in-out;
+}
+
