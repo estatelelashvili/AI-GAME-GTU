@@ -19,7 +19,7 @@ class Layer {
   }
 }
 
-export default class Network {
+ export default class Network {
   constructor() {
     this.learningRate = 0.1;
     this.epochs = 10000;
@@ -117,6 +117,7 @@ export default class Network {
     const result = this.outputLayer.nodes[0].output;
     // console.log('decimal values ', testData[0], testData[1], result);
     return +result.toFixed(1) == true;
+    // return result;
   }
 }
 

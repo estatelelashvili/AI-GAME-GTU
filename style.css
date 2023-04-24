@@ -88,11 +88,19 @@ body{
     transform: rotate(30deg)  translateY(-30%);
 }
 
+.load{
+  top:56%;
+  transform: rotate(0deg) translateY(-30%);
+}
+.lock{
+  transition: all 1s ease-in-out;
+}
+
 .agent-sensor{  
     position: absolute;
     top: 56%;
-    left: 84%;
-    width: 755px;
+    left: 82%;
+    width: 1115px;
     height: 12px;
     background-color: transparent;
     border-top: 2px dashed white;
@@ -109,11 +117,11 @@ body{
 .neo-sensor{  
   position: absolute;
   top: 64%;
-  left: 87%;
-  width: 730px;
+  left: 86%;
+  width: 1070px;
   height: 12px;
   background-color: transparent;
-  border-top: 2px dashed chartreuse;
+  border-top: 2px dashed red;
   transform: translate(-50%, -50%) ;
   transform-origin: left bottom;
   transition: all 1s ease-in-out;

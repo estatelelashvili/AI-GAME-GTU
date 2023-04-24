@@ -1,4 +1,4 @@
-import Network from '../../network';
+import Network from '../../network.js';
 
 export default class Bot {
   constructor(dataset, imgQuery, EnemyImgQuery, sensorQuery, id) {
