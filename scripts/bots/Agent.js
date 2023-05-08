@@ -11,6 +11,8 @@ export default class Enemy extends Bot {
 
     this.isBulletClose = false;
     this.callBack = callBack;
+
+    this.bulletCount = 7;
   }
 
   aim(id) {
@@ -25,52 +27,74 @@ export default class Enemy extends Bot {
   }
 
   flyBullet() {
-    let intervalID = setInterval(()=> {
+    return new Promise((resolve) =>{
 
-      let currentLeft = parseFloat(this.bullet.offsetLeft);
-      this.bullet.style.left = `${currentLeft + 100}px`;
-
-      this.enemyRect = this.enemyImg.getBoundingClientRect();
-      this.bulletRect = this.bullet.getBoundingClientRect();
-
-      this.isBulletClose = this.enemyRect.left - this.bulletRect.right <= 175;
-      if(this.isBulletClose){
-        // console.log(this.callBack);
-        this.callBack();
-
-      }
-
-      if(this.bullet.offsetLeft + this.bullet.offsetWidth >=
-        this.mainContainer.offsetLeft + this.mainContainer.offsetWidth){
-          clearInterval(intervalID);
-          this.bullet.style.left = 
-          this.mainContainer.offsetLeft +
-          this.mainContainer.offsetWidth - 
-          this.bullet.offsetWidth + 'px';
+      let intervalID = setInterval(()=> {
+  
+        let currentLeft = parseFloat(this.bullet.offsetLeft);
+        this.bullet.style.left = `${currentLeft + 10}px`;
+  
+        this.enemyRect = this.enemyImg.getBoundingClientRect();
+        this.bulletRect = this.bullet.getBoundingClientRect();
+  
+        this.isBulletClose = this.enemyRect.left - this.bulletRect.right <= 175;
+        if(this.isBulletClose){
+          // console.log(this.callBack);
+          this.callBack(this.id, this.bulletCount >= 1);
+  
         }
-
-    }, 500);
-    if(this.bullet.offsetLeft  + this.bullet.offsetWidth === 
-      this.mainContainer.offsetLeft + this.mainContainer.offsetWidth ){
-        this.bullet.style.left = '225px';
+  
+        if(this.bullet.offsetLeft + this.bullet.offsetWidth >=
+          this.mainContainer.offsetLeft + this.mainContainer.offsetWidth){
+            clearInterval(intervalID);
+            this.bullet.style.left = 
+            this.mainContainer.offsetLeft +
+            this.mainContainer.offsetWidth - 
+            this.bullet.offsetWidth + 'px';
+            resolve();
+          }
+  
+      }, 25);
+      if(this.bullet.offsetLeft  + this.bullet.offsetWidth === 
+        this.mainContainer.offsetLeft + this.mainContainer.offsetWidth ){
+          this.bullet.style.left = '360px';
       }
+    });
   }
 
-  shoot(id) {
-    this.isObjectEnemy = this.chechIfObjectIsEnemy(id);
-    const decision = this.nn.predict([this.isObjectEnemy, this.isAlive]);
+  async shoot(status) {
+    this.bullet.classList.remove('lock');
+    // this.isObjectEnemy = this.chechIfObjectIsEnemy(id);
+    this.isObjectEnemy = status;
+    // const decision = this.nn.predict([this.isObjectEnemy, this.isAlive]);
+    const decision = this.nn.predict([this.isEnemyNearBy, this.isAlive]);
     if (decision) {
-      this.flyBullet();
+      const fireNextBullet = async () => {
+        if(this.bulletCount > 0){
+          await this.flyBullet().then(()=> {
+            this.bulletCount--;
+            fireNextBullet();
+          });
+
+        if(this.bulletCount <= 0){
+            this.callBack(this.id, this.bulletCount >= 1);
+            return;
+          }
+        }
+      };
+
+      fireNextBullet();
     }
   }
 
   chechIfObjectIsEnemy(id){
     return id === 'system-enemy';
-
   }
 
-  action(id) {
+  action =(id, status)=> {
     this.aim(id);
-    this.shoot(id);
+    setTimeout(()=> {
+      this.shoot(status);
+    }, 1000);
   }
 }

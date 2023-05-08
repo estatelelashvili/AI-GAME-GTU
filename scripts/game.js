@@ -1,5 +1,5 @@
 import Agent from './bots/Agent.js';
-// import Hero from './bots/Hero.js';
+import Hero from './bots/Hero.js';
 
 
 
@@ -31,15 +31,31 @@ function cb(){
 class Game{
     constructor(AgentTrainigData, HeroTrainigData){
 
+        this.btnRestart = document.getElementById('restart');
+        this.hero = new Hero(HeroTrainigData, 
+            '.neo-img',
+             '.agent-container-img',
+             '.neo-sensor',
+             'system-enemy'
+             );
+
+
         this.agent = new Agent(AgentTrainigData,
              '.agent-container-img', 
              ".neo-img", 
              ".agent-sensor",
-             "system-agent", cb)
+             "system-agent", this.hero.action)
     }
 
     run(){
         this.agent.action('system-enemy');
+        this.listenToRestart();
+    }
+
+    listenToRestart(){
+        this.btnRestart.addEventListener('click', ()=>{
+            location.reload();
+        })
     }
 
 
